@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import Cell from'./components/Cell.jsx'
 
 function App() {
  const [board, setBoard] = useState([]);
@@ -8,17 +9,34 @@ function App() {
 useEffect(function (){
 
   const newBoard = Array.from({length: 100}, function (_, index) {
-   return index;
+    return {
+      id: index,
+      wasClicked: false,
+      isBomb: false,
+      flagged: false,
+      adjacentBombs: 0
+    };
   }) 
  
   setBoard(newBoard)
 }, [])
 
+function handleCellClick(id) {
+  const updatedBoard = board.map(function (cell) {
+    if (cell.id === id) {
+      return { ...cell, wasClicked: true };
+    } else {
+      return cell;
+    }
+  });
+
+  setBoard(updatedBoard);
+}
   return (
     <>
       <div className='board'>
-        {board.map( index => (
-        <div key = {index} className="cell" > </div>
+        {board.map( cell => (
+          <Cell key={cell.id} cell={cell} onClick={handleCellClick}/>
         )
 
         )}
