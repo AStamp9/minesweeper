@@ -1,0 +1,18 @@
+
+body {
+  background: rgb(42, 73, 85);
+  display: flex;
+  justify-content: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10,40px);
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  background-color: rgb(197, 23, 119);
+  border: 1px solid black;
+}
