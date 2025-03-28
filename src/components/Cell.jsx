@@ -12,10 +12,16 @@ function Cell(props) {
     if (cell.wasClicked) {
         className += " revealed"
     }
+  
     let display = '';
     if (cell.wasClicked) {
-        display = cell.id;
+        if (cell.isBomb) {
+        display = '💣';
+        } else {
+        display = cell.id; // placeholder for now (we'll show number later)
+        }
     }
+
 
     return (
         <div className={className} onClick={handleClick}>

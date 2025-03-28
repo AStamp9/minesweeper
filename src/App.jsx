@@ -18,8 +18,21 @@ useEffect(function (){
     };
   }) 
  
+  const totalBombs = 10;
+  let bombsPlaced = 0;
+  
+  while (bombsPlaced < totalBombs) {
+    const randomIndex = Math.floor(Math.random() * 100);
+  
+    if (newBoard[randomIndex].isBomb === false) {
+      newBoard[randomIndex].isBomb = true;
+      bombsPlaced++;
+    }
+  }
+  
   setBoard(newBoard)
 }, [])
+
 
 function handleCellClick(id) {
   const updatedBoard = board.map(function (cell) {
